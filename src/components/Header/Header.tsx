@@ -1,45 +1,79 @@
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 const Header = () => {
+  const { t } = useTranslation('common', { keyPrefix: 'common.header' })
+
   return (
-    <div className="fixed left-0 top-0 z-10 w-full bg-[#ccc]/20 shadow-sm">
-      <div className="mx-auto grid h-[30px] max-w-[1200px] grid-cols-2 items-center justify-between px-[15px] transition-all duration-300 ease-in sm:h-[60px] sm:grid-cols-2 sm:grid-rows-2">
-        <Link
-          to="#"
-          className="text-xl font-light capitalize tracking-[0.8px] sm:row-span-2 sm:text-base md:text-xs lg:text-base"
-        >
-          <i className="fas fa-phone-alt mr-[5px] text-xl text-red-500 lg:text-base"></i>
-          Hotline:{' '}
-          <span className="font-medium transition-all duration-300 ease-in hover:text-red-500">
-            0384589790
-          </span>
-        </Link>
-        <div className="flex items-center gap-x-10 sm:row-span-2 sm:flex-col-reverse sm:flex-wrap sm:gap-3">
-          <div className="flex items-center gap-2">
-            <Link
-              to="/dang-nhap"
-              className="text-lg font-medium uppercase leading-[1.5px] tracking-[0.5px] text-black transition-all duration-300 ease-in first:mr-[10px] hover:text-[#f28902] md:text-xs lg:text-base"
-            >
-              <i className="fas fa-unlock-alt mr-[5px]"></i>đăng nhập
-            </Link>
-            <Link
-              to="/dang-ki"
-              className="text-lg font-medium uppercase leading-[1.5px] tracking-[0.5px] text-black transition-all duration-300 ease-in first:mr-[10px] hover:text-[#f28902] md:text-xs lg:text-base"
-            >
-              <i className="fas fa-user-plus mr-[5px]"></i>tạo tài khoản
-            </Link>
+    <section id="top-headers">
+      <div className="top-header container-header">
+        <div className="hotline">
+          <Link to="#">
+            <i className="fas fa-phone-alt"></i>
+            {t('hotline')}: <span>0384589790</span>
+          </Link>
+        </div>
+
+        {/* {auth.data?.user ? (
+          <div className="user">
+            <div onClick={() => setClickUser(!clickUser)}>
+              <img src={auth.data.user.avatar} alt={auth.data.user.name} />
+              <p>{auth.data.user.name}</p>
+            </div>
+            <ul style={clickUser ? { display: 'block' } : { display: 'none' }}>
+              <li>
+                <Link
+                  to="/profile"
+                  state={auth}
+                  onClick={() => setClickUser(!clickUser)}
+                >
+                  <i className="fas fa-sign-in-alt"></i>Thông tin tài khoản
+                </Link>
+              </li>
+              {auth.data.user.role === 'admin' && (
+                <li>
+                  <Link
+                    to="/admin"
+                    state={auth}
+                    onClick={() => setClickUser(!clickUser)}
+                  >
+                    <i className="fas fa-sign-in-alt"></i>Trang admin
+                  </Link>
+                </li>
+              )}
+              <li>
+                <Link to="/history">
+                  <i className="fas fa-sign-out-alt"></i>Lịch sử mua hàng
+                </Link>
+              </li>
+              <li>
+                <Link to="#" onClick={handleLogout}>
+                  <i className="fas fa-sign-out-alt"></i>Đăng xuất
+                </Link>
+              </li>
+            </ul>
           </div>
-          <div className="items-end bg-[#f28902] px-[10px] py-[7.5] lg:col-span-2 lg:text-center ">
-            <Link
-              to="/gio-hang"
-              className="text-lg font-medium uppercase text-white md:text-xs lg:text-base"
-            >
-              <i className="fas fa-shopping-cart mr-[5px]"></i>Giỏ hàng
-            </Link>
-          </div>
+        ) : ( */}
+        <div className="login">
+          <Link to="/dang-nhap">
+            <i className="fas fa-unlock-alt"></i>
+            {t('login')}
+          </Link>
+
+          <Link to="/dang-ki">
+            <i className="fas fa-user-plus"></i>
+            {t('register')}
+          </Link>
+        </div>
+        {/* )} */}
+        <div className="cart">
+          <Link to="/gio-hang">
+            <i className="fas fa-shopping-cart"></i>
+            {t('cart')}
+          </Link>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

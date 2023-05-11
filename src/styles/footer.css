@@ -1,0 +1,71 @@
+#footer {
+	position: relative;
+}
+.footer {
+	width: 100%;
+	max-width: 1200px;
+	margin: 15px auto;
+}
+.footer.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.menu-footer {
+	display: flex;
+	justify-content: space-between;
+}
+.menu-footer .left {
+	flex-direction: column;
+	width: 50%;
+}
+.menu-footer .left h3,
+.menu-footer .right h3 {
+	font-size: 2rem;
+	text-transform: uppercase;
+	font-weight: 500;
+	line-height: 1.5;
+	letter-spacing: 0.1rem;
+}
+.menu-footer .left ul li {
+	padding: 10px 10px;
+}
+.menu-footer .left ul li a {
+	font-size: 1.5rem;
+	text-transform: capitalize;
+	line-height: 1.5;
+	letter-spacing: 0.1rem;
+	transition: 0.3s all ease-in;
+}
+.menu-footer .left ul li a:hover {
+	color: #f28902;
+}
+.menu-footer .right {
+	margin-top: 10px;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+.menu-footer .right p {
+	font-size: 1.5rem;
+	text-transform: capitalize;
+	line-height: 1.5;
+	letter-spacing: 0.1rem;
+	transition: 0.3s all ease-in;
+}
+@media only screen and (max-width: 962px) {
+	.menu-footer .left {
+		width: 80%;
+	}
+}
+@media only screen and (max-width: 762px) {
+	.menu-footer {
+		flex-direction: column;
+		padding: 0 15px;
+		justify-content: flex-start;
+		align-items: flex-start;
+	}
+	.menu-footer .left {
+		justify-content: flex-start;
+		align-items: flex-start;
+	}
+}
