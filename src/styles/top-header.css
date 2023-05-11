@@ -1,0 +1,164 @@
+#top-headers {
+	background: #eee;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	width: 100%;
+}
+#top-headers .top-header {
+	margin: 0 auto;
+	padding: 0 15px;
+	max-width: 1200px;
+	height: 30px;
+}
+.container-header {
+	display: grid;
+	align-items: center;
+	grid-template-columns: 50% 40% 10%;
+	transition: 0.3s all ease-in;
+}
+.hotline a {
+	text-transform: capitalize;
+	letter-spacing: 0.8px;
+	font-weight: 300;
+	font-size: 1.6rem;
+}
+.hotline a span {
+	font-weight: 500;
+	transition: 0.3 all ease-in;
+}
+.hotline a span:hover {
+	color: #f28902;
+}
+.hotline i {
+	font-size: 1.7rem;
+	color: red;
+	margin-right: 5px;
+}
+.top-header .user {
+	height: 30px;
+}
+.top-header .user div {
+	height: 30px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin-right: 10px;
+	cursor: pointer;
+}
+.top-header .user div img {
+	width: 30px;
+	height: 30px;
+	padding: 1px 0;
+	border-radius: 50%;
+	margin-right: 5px;
+}
+.top-header .user div p {
+	text-transform: uppercase;
+	font-weight: 500;
+	font-size: 13px;
+}
+.top-header .user ul {
+	background-color: #eee;
+	padding: 10px 15px;
+	float: right;
+	width: 43%;
+	border-radius: 3px;
+	box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+}
+.top-header .user ul li {
+	padding: 5px 8px;
+	font-size: 15px;
+	color: black;
+}
+.top-header .user ul li i {
+	margin-right: 5px;
+}
+.top-header .user ul li .login {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	margin-right: 10px;
+}
+.login {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin-right: 10px;
+}
+.login a {
+	font-size: 1.3rem;
+	font-weight: 500;
+	letter-spacing: 0.5px;
+	line-height: 1.5px;
+	text-transform: uppercase;
+	transition: 0.3s all ease-in;
+	color: #000;
+}
+.login a:first-child {
+	margin-right: 10px;
+}
+.login a:hover {
+	color: #f28902;
+}
+.login a i {
+	margin-right: 5px;
+}
+.cart {
+	background-color: #f28902;
+	padding: 7.5px 10px;
+	align-items: flex-end;
+}
+.cart a {
+	font-size: 1.3rem;
+	text-transform: uppercase;
+	font-weight: 500;
+	color: #fff;
+}
+.cart a i {
+	margin-right: 5px;
+}
+@media only screen and (max-width: 1040px) {
+	.container-header {
+		/* grid-template-columns: auto auto; */
+		grid-template-columns: 50% 35% 15%;
+	}
+}
+@media only screen and (max-width: 762px) {
+	#top-headers .top-header {
+		height: 60px;
+	}
+	.container-header {
+		grid-template-areas:
+			'header header header2'
+			'header1 header1 header1';
+		/* grid-auto-flow: column dense; */
+	}
+	.hotline {
+		grid-area: header;
+	}
+	.login {
+		grid-area: header1;
+		justify-content: center;
+		margin-bottom: 5px;
+	}
+	.cart {
+		grid-area: header2;
+	}
+}
+@media only screen and (max-width: 692px) {
+	.container-header {
+		grid-template-columns: 50% 25% 25%;
+		/* grid-auto-flow: column dense; */
+	}
+}
+@media only screen and (max-width: 415px) {
+	.container-header {
+		grid-template-columns: 50% 15% 35%;
+		/* grid-auto-flow: column dense; */
+	}
+	.login {
+		margin: 8px 0;
+	}
+}

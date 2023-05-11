@@ -1,0 +1,15 @@
+{
+  "common": {
+    "header": {
+      "hotline": "hotline",
+      "login": "đăng nhập",
+      "register": "tạo tài khoản",
+      "cart": "Giỏ hàng"
+    },
+    "headerBottom": {
+      "vietnameseGarden": "vườn cây việt",
+      "notJustBonsai": "không chỉ là cây cảnh",
+      "search": "Tìm kiếm"
+    }
+  }
+}
