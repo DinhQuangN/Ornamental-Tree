@@ -1,0 +1,59 @@
+{
+  "common": {
+    "common": {
+      "account": "Tài khoản",
+      "password": "Mật khẩu"
+    },
+    "admin": {
+      "admin": {
+        "statistical": "Thống kê",
+        "product": "Sản phẩm",
+        "slider": "Slider",
+        "bill": "Hóa đơn",
+        "productType": "Loại sản phẩm",
+        "accessory": "Phụ kiện",
+        "account": "Tài khoản"
+      }
+    },
+    "header": {
+      "hotline": "hotline",
+      "login": "đăng nhập",
+      "register": "tạo tài khoản",
+      "cart": "Giỏ hàng"
+    },
+    "headerBottom": {
+      "vietnameseGarden": "vườn cây việt",
+      "notJustBonsai": "không chỉ là cây cảnh",
+      "search": "Tìm kiếm"
+    },
+    "login": {
+      "login": "Đăng nhập",
+      "forgotPassword": "Quên mật khẩu?",
+      "orUseGoogle": "Hoặc sử dụng Google",
+      "orRegisterToUse": "Hoặc đăng kí sử dụng",
+      "register": "Đăng kí",
+      "enterYourAccount": "Nhập tài khoản của bạn",
+      "enterYourPassword": "Nhập mật khẩu của bạn"
+    },
+    "register": {
+      "login": "Đăng nhập",
+      "register": "Đăng kí",
+      "firstName": "Họ",
+      "lastName": "Tên",
+      "enterThePassword": "Nhập lại mật khẩu",
+      "doYouAlreadyHaveAnAccount?": "Bạn đã có tài khoản?",
+      "enterYourFirstName": "Nhập họ của bạn",
+      "enterYourLastName": "Nhập tên của bạn",
+      "enterYourEmail": "Nhập email của bạn",
+      "enterYourPassword": "Nhập mật khẩu của bạn",
+      "reEnterYourPassword": "Nhập lại mật khẩu của bạn"
+    },
+    "home": {
+      "bonsaiGarden": "Vườn cây cảnh, bán cây cảnh"
+    },
+    "editor": {
+      "notification": "Thông báo",
+      "fileDoesNotExist": "Tập tin không tồn tại!"
+    }
+  }
+}
