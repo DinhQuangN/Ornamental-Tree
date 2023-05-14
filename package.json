@@ -1,5 +1,5 @@
 {
-	"name": "prnament-tree",
+	"name": "ornament-tree",
 	"version": "1.0.0",
 	"scripts": {
 		"dev": "pnpm run -r dev",
