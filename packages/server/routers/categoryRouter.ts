@@ -10,7 +10,7 @@ import auth from '../middleware/auth';
 const router = express.Router();
 
 router.get('/get_category', getCategory);
-router.post('/create_category', createCategory);
+router.post('/create_category', auth, createCategory);
 router.patch('/update_category/:id', auth, updateCategory);
 router.delete('/delete_category/:id', auth, deleteCategory);
 

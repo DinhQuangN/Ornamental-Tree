@@ -2,10 +2,10 @@ import { Request, Response } from 'express';
 import { IReqAuth } from '../config/interface';
 import CategoryMessage from '../models/categoryModel';
 
-export const createCategory = async (req: Request, res: Response) => {
-	// if (!req.user) {
-	// 	return res.status(404).json({ message: 'Invalid Authorization' });
-	// }
+export const createCategory = async (req: IReqAuth, res: Response) => {
+	if (!req.user) {
+		return res.status(404).json({ message: 'Invalid Authorization' });
+	}
 	try {
 		const { name, role } = req.body;
 		const category = await CategoryMessage.findOne({ name });

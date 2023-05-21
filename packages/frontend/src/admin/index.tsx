@@ -23,7 +23,7 @@ const Admin = ({
   user,
   children,
 }: AdminProps) => {
-  const { t } = useTranslation('common', { keyPrefix: 'common.admin.admin' })
+  const { t } = useTranslation('common', { keyPrefix: 'common.admin' })
   return (
     <div className="admin">
       <title>Admin {t('statistical')}</title>
@@ -55,7 +55,7 @@ const Admin = ({
               </li>
             </ul>
           </div>
-          <div className="w-full">{children}</div>
+          <div className="admin-right">{children}</div>
         </div>
       </div>
       {/* ) : (

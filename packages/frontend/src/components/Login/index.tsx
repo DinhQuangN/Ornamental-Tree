@@ -1,28 +1,40 @@
-import { useState } from 'react'
+import { useAppSelector } from '@/hook/useTypedSelector'
+import React, { useLayoutEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
-export interface FormLogin {
+export interface FormData {
   account: string
   password: string
 }
 
 interface LoginProps {
-  onLogin?: (value: FormLogin) => void
+  onChange?: (value: FormData) => void
 }
 
-const Login = ({ onLogin }: LoginProps) => {
+const Login = ({ onChange }: LoginProps) => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
-  const [data, setData] = useState<FormLogin>({ account: '', password: '' })
+  const [data, setData] = useState<FormData>({ account: '', password: '' })
   const { t: common } = useTranslation('common', { keyPrefix: 'common.common' })
   const { t } = useTranslation('common', { keyPrefix: 'common.login' })
-  const handleSubmit = () => {
-    onLogin?.(data)
+  const { auth } = useAppSelector((state) => state)
+  const navigate = useNavigate()
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    onChange?.(data)
   }
+  useLayoutEffect(() => {
+    if (auth.data?.access_token) {
+      navigate('/')
+    }
+    return
+  }, [auth.data?.access_token])
+
   return (
     <div className="limiter">
       <title>{t('login')}</title>
-      <div className="containe">
+      <div className="container">
         <div className="wrap-login">
           <form className="login-form validate-form" onSubmit={handleSubmit}>
             <span className="login-form-title">{t('login')}</span>

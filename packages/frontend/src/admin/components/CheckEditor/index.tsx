@@ -61,7 +61,7 @@ const Editor = ({ value, onChange }: EditorProps) => {
         quill?.getEditor().insertEmbed(range, 'image', `${photo.url}`)
       }
     }
-  }, [])
+  }, [t])
   useEffect(() => {
     const quill = quillRef.current
     if (!quill) return

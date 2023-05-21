@@ -5,17 +5,27 @@
       "password": "Mật khẩu"
     },
     "admin": {
-      "admin": {
-        "statistical": "Thống kê",
-        "product": "Sản phẩm",
-        "slider": "Slider",
-        "bill": "Hóa đơn",
-        "productType": "Loại sản phẩm",
-        "accessory": "Phụ kiện",
-        "account": "Tài khoản"
+      "statistical": "Thống kê",
+      "product": "Sản phẩm",
+      "slider": "Slider",
+      "bill": "Hóa đơn",
+      "productType": "Loại sản phẩm",
+      "accessory": "Phụ kiện",
+      "account": "Tài khoản",
+      "category": {
+        "createCategory": "Thêm loại sản phẩm",
+        "category": "Loại sản phẩm",
+        "enterCategoryName": "Nhập tên loại sản phẩm",
+        "pleaseEnterCategory": "Vui lòng nhập tên loại sản phẩm",
+        "selectCategory": "Chọn loại sản phẩm",
+        "pleaseEnterSelectCategory": "Vui lòng chọn loại sản phẩm"
       }
     },
     "header": {
+      "accountInformation": "Thông tin tài khoản",
+      "adminPage": "Trang admin",
+      "purchaseHistory": "Lịch sử mua hàng",
+      "logout": "Đăng xuất",
       "hotline": "hotline",
       "login": "đăng nhập",
       "register": "tạo tài khoản",
@@ -54,6 +64,13 @@
     "editor": {
       "notification": "Thông báo",
       "fileDoesNotExist": "Tập tin không tồn tại!"
+    },
+    "navbar": {
+      "home": "trang chủ",
+      "introduce": "giới thiệu",
+      "trees": "cây cảnh",
+      "ornamentalPlantPot": "chậu cảnh",
+      "bonsaiAccessories": "phụ kiện cây cảnh"
     }
   }
 }

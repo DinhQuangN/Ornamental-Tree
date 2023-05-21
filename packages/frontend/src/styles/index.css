@@ -16,40 +16,47 @@
 @import url('./userInfo.css');
 @import url('./thongke.css');
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 html {
-	font-size: 62.5%;
-	font-family: 'Roboto', sans-serif;
+  font-size: 62.5%;
+  font-family: 'Roboto', sans-serif;
 }
 .container {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 a {
-	text-decoration: none;
+  text-decoration: none;
 }
 li {
-	list-style: none;
+  list-style: none;
 }
 img {
-	height: 100%;
-	width: 100%;
-	object-fit: cover;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 button {
-	cursor: pointer;
+  cursor: pointer;
 }
 .css-wjh20t-MuiPagination-ul {
-	justify-content: center;
+  justify-content: center;
 }
 .css-19micn4-MuiButtonBase-root-MuiPaginationItem-root {
-	font-size: 1.5rem !important;
+  font-size: 1.5rem !important;
 }
 .css-g2z002-MuiSvgIcon-root-MuiPaginationItem-icon {
-	font-size: 1.5rem !important;
+  font-size: 1.5rem !important;
+}
+
+.hidden {
+  display: none !important;
+}
+.block {
+  display: block !important;
 }
