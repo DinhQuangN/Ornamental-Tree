@@ -1,12 +1,12 @@
 import Admin from '@/admin'
 import Accessory from '@/admin/components/Accessory'
 import Category from '@/admin/components/Category'
+import Product from '@/admin/components/Product'
 import Header from '@/components/Header/Header'
 import HeaderBottom from '@/components/Header/HeaderBottom'
 import Login, { FormData as FormDataLogin } from '@/components/Login'
 import Navbar from '@/components/Navbar'
 import Register from '@/components/Register'
-// import { addToken, refreshToken } from '@/features/Auth'
 import { addToken, refreshToken } from '@/features/Auth'
 import { useAppDispatch } from '@/hook/useTypedSelector'
 import Home from '@/pages/Home'
@@ -43,7 +43,7 @@ const App = () => {
     <Router>
       <Header />
       <HeaderBottom />
-      <Navbar data={category} />
+      <Navbar category={category} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
@@ -58,6 +58,7 @@ const App = () => {
             path="loai-san-pham"
             element={<Category category={category} />}
           />
+          <Route path="san-pham" element={<Product category={category} />} />
         </Route>
       </Routes>
     </Router>

@@ -21,14 +21,13 @@ const FormCategory = ({
   onChange,
 }: CategoryProps) => {
   const { t } = useTranslation('common', { keyPrefix: 'common.admin.category' })
-  console.log('test', form.getFieldsValue())
+
   return (
     <Modal
-      title="Loại sản phẩm"
+      title={t('category')}
       forceRender
       open={open}
       width={1000}
-      // destroyOnClose={true}
       onCancel={() => onOpenChange?.(false)}
       okButtonProps={{ disabled: true, hidden: true }}
       cancelButtonProps={{ disabled: true, hidden: true }}
@@ -39,7 +38,6 @@ const FormCategory = ({
           type="primary"
           htmlType="submit"
           style={{ justifyContent: 'flex-end' }}
-          // onClick={() => onOpenChange?.(false)}
         >
           Save
         </Button>,
@@ -60,8 +58,7 @@ const FormCategory = ({
         </Form.Item>
         <Form.Item
           name="name"
-          label={t('enterCategoryName')}
-          className="[&.ant-form-item_label]:text-3xl"
+          label={t('enterName')}
           rules={[
             {
               required: true,
@@ -72,12 +69,11 @@ const FormCategory = ({
           ]}
           hasFeedback
         >
-          <Input placeholder={t('enterCategoryName')} size="large" />
+          <Input placeholder={t('enterName')} size="large" />
         </Form.Item>
         <Form.Item
           name="role"
           label={t('selectCategory')}
-          className="[&.ant-form-item_label]:text-3xl"
           rules={[
             {
               required: true,
@@ -88,7 +84,7 @@ const FormCategory = ({
         >
           <Select
             showSearch
-            placeholder="Search to Select"
+            placeholder={t('searchToSelect')}
             filterOption={(input, option) =>
               (option?.label ?? '').includes(input)
             }
