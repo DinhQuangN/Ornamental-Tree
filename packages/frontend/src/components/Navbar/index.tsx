@@ -8,10 +8,10 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 interface DataNavbar {
-  data: UseQueryResult<AxiosResponse<any, any>, unknown>
+  category: UseQueryResult<AxiosResponse<any, any>, unknown>
 }
 
-const Navbar = ({ data }: DataNavbar) => {
+const Navbar = ({ category }: DataNavbar) => {
   const [scroll, setScroll] = useState<boolean>(false)
   const [menu, setMenu] = useState<boolean>(false)
   const { t } = useTranslation('common', { keyPrefix: 'common.navbar' })
@@ -35,7 +35,6 @@ const Navbar = ({ data }: DataNavbar) => {
     { to: '#', name: t('ornamentalPlantPot') },
     { to: '/phu-kien-cay-canh', name: t('bonsaiAccessories') },
   ]
-  console.log(data.data?.data)
   return (
     <section id="navbars" className={scroll ? 'shrink' : ''}>
       <div className="navbar container">
@@ -56,7 +55,7 @@ const Navbar = ({ data }: DataNavbar) => {
                 </Link>
                 {x.name === t('trees') && (
                   <ul>
-                    {data.data?.data.map(
+                    {category.data?.data.map(
                       (item: DataCategory, index: number) =>
                         item.role === 1 && (
                           <li key={index}>
@@ -74,7 +73,7 @@ const Navbar = ({ data }: DataNavbar) => {
                 )}
                 {x.name === t('ornamentalPlantPot') && (
                   <ul>
-                    {data.data?.data.map(
+                    {category.data?.data.map(
                       (item: DataCategory, index: number) =>
                         item.role === 2 && (
                           <li key={index}>
@@ -106,7 +105,7 @@ const Navbar = ({ data }: DataNavbar) => {
               </Link>
               {x.name === t('trees') && (
                 <ul>
-                  {data.data?.data.map(
+                  {category.data?.data.map(
                     (item: DataCategory, index: number) =>
                       item.role === 1 && (
                         <li key={index}>
@@ -124,7 +123,7 @@ const Navbar = ({ data }: DataNavbar) => {
               )}
               {x.name === t('ornamentalPlantPot') && (
                 <ul>
-                  {data.data?.data.map(
+                  {category.data?.data.map(
                     (item: DataCategory, index: number) =>
                       item.role === 2 && (
                         <li key={index}>

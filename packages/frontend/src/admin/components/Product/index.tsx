@@ -1,42 +1,51 @@
 import Admin from '@/admin'
+import { DataType as DataCategory } from '@/admin/components/Category'
 import { useAppSelector } from '@/hook/useTypedSelector'
 import { deleteAPI, getAPI, patchAPI, postAPI } from '@/utils/axios'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { UseQueryResult, useMutation, useQuery } from '@tanstack/react-query'
 import { Button, Form, Modal, Space } from 'antd'
 import Table, { ColumnsType } from 'antd/es/table'
+import { AxiosResponse } from 'axios'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import FormAccessory, { FormData, ImageList } from './FormAccessory'
+import FormProduct, { FormData, ImageList } from './FormProduct'
 
 interface DataType {
-  _id: string
+  _id?: string
   title: string
-  price: string
   describe: string
-  detail: string
+  price: string
   imageArray: string[]
+  detail: string
+  category: string
 }
+
 interface DataEdit {
   id?: string
   request: FormData
 }
 
-const Accessory = () => {
+interface ProductProps {
+  category: UseQueryResult<AxiosResponse<any, any>, unknown>
+}
+
+const Product = ({ category }: ProductProps) => {
   const [form] = Form.useForm()
   const [open, setOpen] = useState<boolean>(false)
   const { t } = useTranslation('common', {
-    keyPrefix: 'common.admin.accessoryForm',
+    keyPrefix: 'common.admin.productForm',
   })
   const { auth } = useAppSelector((state) => state)
 
-  const { data: accessory, refetch } = useQuery({
-    queryKey: ['getAccessory'],
-    queryFn: async () => await getAPI('accessory', auth.data?.access_token),
+  const { data: product, refetch } = useQuery({
+    queryKey: ['fetchProduct'],
+    queryFn: async () => await getAPI('get_products'),
   })
-  const { mutate: createAccessory } = useMutation({
-    mutationKey: ['createAccessory'],
+
+  const { mutate: createProduct } = useMutation({
+    mutationKey: ['createProduct'],
     mutationFn: async (request: FormData) =>
-      await postAPI('create_accessory', request, auth.data?.access_token),
+      await postAPI('create_product', request, auth.data?.access_token),
     onSuccess() {
       setOpen(false)
     },
@@ -44,34 +53,31 @@ const Accessory = () => {
       refetch()
     },
   })
-  const { mutate: updateAccessory } = useMutation({
-    mutationKey: ['updateAccessory'],
+  const { mutate: updateProduct } = useMutation({
+    mutationKey: ['updateProduct'],
     mutationFn: async ({ id, request }: DataEdit) =>
-      await patchAPI(
-        `update_accessory/${id}`,
-        request,
-        auth.data?.access_token
-      ),
+      await patchAPI(`update_product/${id}`, request, auth.data?.access_token),
     onSuccess() {
       setOpen(false)
     },
+
     onSettled() {
       refetch()
     },
   })
-  const { mutate: deleteAccessory } = useMutation({
-    mutationKey: ['deleteAccessory'],
+  const { mutate: deleteProduct } = useMutation({
+    mutationKey: ['deleteProduct'],
     mutationFn: async (id: string) =>
-      await deleteAPI(`delete_accessory/${id}`, auth.data?.access_token),
+      await deleteAPI(`delete_product/${id}`, auth.data?.access_token),
     onSettled() {
       refetch()
     },
   })
   const handleChange = (value: FormData) => {
     if (form.getFieldsValue()._id) {
-      updateAccessory({ id: value._id, request: value })
+      updateProduct({ id: value._id, request: value })
     } else {
-      createAccessory(value)
+      createProduct(value)
     }
   }
   const columns: ColumnsType<DataType> = [
@@ -116,6 +122,12 @@ const Accessory = () => {
       render: (detail: string) => detail.slice(0, 25) + '...',
     },
     {
+      title: t('category'),
+      dataIndex: 'category',
+      key: 'category',
+      render: (x: DataCategory) => x.name,
+    },
+    {
       title: ' ',
       key: 'action',
       render: (_, record) => (
@@ -140,22 +152,22 @@ const Accessory = () => {
   }
   const handleDelete = (value: DataType) => {
     Modal.confirm({
-      title: t('areYouSureYouWantToDeleteThisAccessory'),
-      onOk: () => deleteAccessory(value._id as string),
+      title: t('areYouSureYouWantToDeleteThisProduct'),
+      onOk: () => deleteProduct(value._id as string),
     })
   }
   return (
-    <Admin accessory="isActive">
+    <Admin product="isActive">
       <div className="productAdminNav">
-        <button onClick={handleCreate}>{t('createAccessory')}</button>
+        <button onClick={handleCreate}>{t('createProduct')}</button>
       </div>
       <Table
         columns={columns}
-        dataSource={accessory?.data.products}
-        rowKey={(record) => record._id}
+        dataSource={product?.data.products}
+        rowKey={(record) => record.title}
         scroll={{ y: 500 }}
       />
-      <FormAccessory
+      <FormProduct
         form={form}
         open={open}
         onOpenChange={setOpen}
@@ -165,4 +177,4 @@ const Accessory = () => {
   )
 }
 
-export default Accessory
+export default Product

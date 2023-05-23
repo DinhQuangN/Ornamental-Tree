@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next'
 import FormCategory, { FormData } from './FormCategory'
 
 export interface DataType {
-  _id?: string
+  _id: string
   name: string
   role: string | number
 }
@@ -30,7 +30,7 @@ const Category = ({ category }: DataCategory) => {
   const { t } = useTranslation('common', { keyPrefix: 'common.admin.category' })
   const { auth } = useAppSelector((state) => state)
 
-  const { mutate: CreateCategory } = useMutation({
+  const { mutate: createCategory } = useMutation({
     mutationKey: ['createCategory'],
     mutationFn: async (request: FormData) =>
       await postAPI('create_category', request, auth.data?.access_token),
@@ -41,7 +41,7 @@ const Category = ({ category }: DataCategory) => {
       category.refetch()
     },
   })
-  const { mutate: UpdateCategory } = useMutation({
+  const { mutate: updateCategory } = useMutation({
     mutationKey: ['updateCategory'],
     mutationFn: async ({ id, request }: DataEdit) =>
       await patchAPI(`update_category/${id}`, request, auth.data?.access_token),
@@ -52,7 +52,7 @@ const Category = ({ category }: DataCategory) => {
       category.refetch()
     },
   })
-  const { mutate: DeleteCategory } = useMutation({
+  const { mutate: deleteCategory } = useMutation({
     mutationKey: ['deleteCategory'],
     mutationFn: async (id: string) =>
       await deleteAPI(`delete_category/${id}`, auth.data?.access_token),
@@ -62,21 +62,27 @@ const Category = ({ category }: DataCategory) => {
   })
   const handleChange = (value: FormData) => {
     if (form.getFieldsValue()._id) {
-      UpdateCategory({ id: value._id, request: value })
+      updateCategory({ id: value._id, request: value })
     } else {
-      CreateCategory(value)
+      createCategory(value)
     }
   }
   const columns: ColumnsType<DataType> = [
     {
-      title: 'Tên loại sản phẩm',
-      dataIndex: 'name',
-      key: 'name',
+      title: 'ID',
+      dataIndex: '_id',
+      key: '_id',
+      width: 50,
+      render: (id, record, index) => {
+        ++index
+        return index
+      },
+      showSorterTooltip: false,
     },
     {
-      title: 'Loại sản phẩm',
-      dataIndex: 'role',
-      key: 'role',
+      title: t('categoryName'),
+      dataIndex: 'name',
+      key: 'name',
     },
     {
       title: '',
@@ -103,8 +109,8 @@ const Category = ({ category }: DataCategory) => {
   }
   const handleDelete = (value: DataType) => {
     Modal.confirm({
-      title: 'Bạn có chắc chắn muốn xóa loại sản phẩm này không',
-      onOk: () => DeleteCategory(value._id as string),
+      title: t('areYouSureYouWantToDeleteThisCategory'),
+      onOk: () => deleteCategory(value._id as string),
     })
   }
 
@@ -116,7 +122,7 @@ const Category = ({ category }: DataCategory) => {
       <Table
         columns={columns}
         dataSource={category.data?.data}
-        rowKey={(record) => record.name}
+        rowKey={(record) => record._id}
         scroll={{ y: 500 }}
       />
       <FormCategory

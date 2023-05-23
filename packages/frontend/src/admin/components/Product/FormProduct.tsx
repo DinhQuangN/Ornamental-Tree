@@ -1,17 +1,21 @@
-import Editor from '@/admin/components/CheckEditor'
+import { getAPI } from '@/utils/axios'
+import { useQuery } from '@tanstack/react-query'
 import {
   Button,
   Form,
   FormInstance,
   Input,
-  InputNumber,
   Modal,
-  Upload,
+  Select,
+  UploadFile,
+  UploadProps,
   notification,
 } from 'antd'
-import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload'
+import Upload, { RcFile } from 'antd/es/upload'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { DataType } from '../Category'
+import Editor from '../CheckEditor'
 
 export type CustomRequestOptions<T = any> = Parameters<
   Exclude<UploadProps<T>['customRequest'], undefined>
@@ -23,31 +27,32 @@ export interface ImageList {
 }
 
 export interface FormData {
-  _id: string
+  _id?: string
   title: string
-  price: string
   describe: string
-  imageArray: ImageList[]
+  price: string
+  imageArray: string[]
   detail: string
+  category: string
 }
 
-interface AccessoryProps {
+interface ProductProps {
   form: FormInstance
   open?: boolean
   onOpenChange?: (value: boolean) => void
   onChange?: (value: FormData) => void
 }
 
-const FormAccessory = ({
-  form,
-  open,
-  onOpenChange,
-  onChange,
-}: AccessoryProps) => {
+const FormProduct = ({ form, open, onOpenChange, onChange }: ProductProps) => {
   const [fileList, setFileList] = useState<UploadFile<File>[]>([])
   const [image, setImage] = useState<ImageList[]>([])
   const { t } = useTranslation('common', {
-    keyPrefix: 'common.admin.accessoryForm',
+    keyPrefix: 'common.admin.productForm',
+  })
+
+  const { data: category } = useQuery({
+    queryKey: ['fetchCategory'],
+    queryFn: async () => await getAPI('get_category'),
   })
 
   const handleChange: UploadProps['onChange'] = (info) => {
@@ -95,7 +100,7 @@ const FormAccessory = ({
   }
   return (
     <Modal
-      title={t('accessory')}
+      title={t('product')}
       forceRender
       open={open}
       width={1000}
@@ -104,7 +109,7 @@ const FormAccessory = ({
       cancelButtonProps={{ disabled: true, hidden: true }}
       footer={[
         <Button
-          form="formAccessory"
+          form="formProduct"
           key="submit"
           type="primary"
           htmlType="submit"
@@ -116,7 +121,7 @@ const FormAccessory = ({
     >
       <Form
         form={form}
-        id="formAccessory"
+        id="formProduct"
         autoComplete="off"
         layout="vertical"
         onFinish={(values) => {
@@ -151,14 +156,10 @@ const FormAccessory = ({
             },
             { whitespace: true },
             { min: 3 },
-            {
-              type: 'number',
-              min: 0,
-            },
           ]}
           hasFeedback
         >
-          <InputNumber placeholder={t('enterPrice')} size="large" />
+          <Input placeholder={t('enterPrice')} size="large" />
         </Form.Item>
         <Form.Item
           name="describe"
@@ -222,9 +223,39 @@ const FormAccessory = ({
         >
           <Editor />
         </Form.Item>
+        <Form.Item
+          name="category"
+          label={t('selectCategory')}
+          rules={[
+            {
+              required: true,
+              message: t('pleaseEnterSelectCategory'),
+            },
+          ]}
+          hasFeedback
+        >
+          <Select
+            showSearch
+            placeholder={t('searchToSelect')}
+            filterOption={(input, option) =>
+              (option?.name ?? '').includes(input)
+            }
+            filterSort={(optionA, optionB) =>
+              (optionA?.name ?? '')
+                .toLowerCase()
+                .localeCompare((optionB?.name ?? '').toLowerCase())
+            }
+          >
+            {category?.data.map((x: DataType) => (
+              <Select.Option value={x._id} key={x._id}>
+                {x.name}
+              </Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
       </Form>
     </Modal>
   )
 }
 
-export default FormAccessory
+export default FormProduct
