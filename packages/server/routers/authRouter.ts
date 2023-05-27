@@ -1,13 +1,13 @@
 import express from 'express';
 import {
-	activeAccount,
-	forgotPassword,
-	login,
-	loginGoogle,
-	logout,
-	refreshToken,
-	Register,
-	resetPassword
+  activeAccount,
+  forgotPassword,
+  login,
+  loginGoogle,
+  logout,
+  refreshToken,
+  Register,
+  resetPassword
 } from '../controllers/authController';
 import auth from '../middleware/auth';
 const router = express.Router();

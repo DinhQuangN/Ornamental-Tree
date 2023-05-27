@@ -1,9 +1,9 @@
 import express from 'express';
 import {
-	createCategory,
-	deleteCategory,
-	getCategory,
-	updateCategory
+  createCategory,
+  deleteCategory,
+  getCategory,
+  updateCategory
 } from '../controllers/categoryController';
 import auth from '../middleware/auth';
 

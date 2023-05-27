@@ -1,9 +1,9 @@
 import express from 'express';
 import {
-	createSlider,
-	deleteSlider,
-	getSlider,
-	updateSlider
+  createSlider,
+  deleteSlider,
+  getSlider,
+  updateSlider
 } from '../controllers/sliderController';
 import auth from '../middleware/auth';
 
