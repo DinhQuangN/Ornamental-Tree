@@ -72,6 +72,22 @@
         "notification": "Thông báo",
         "fileUploadSuccess": "file được tải thành công.",
         "fileUploadFaile": "tải file thất bại."
+      },
+      "orderForm": {
+        "customer": "khách hàng",
+        "total": "tổng tiền",
+        "status": "trạng thái",
+        "address": "địa chỉ",
+        "describe": "mô tả",
+        "product": "sản phẩm",
+        "contact": "Liên hệ",
+        "name": "Tên sản phẩm",
+        "price": "Giá sản phẩm",
+        "image": "Ảnh sản phẩm",
+        "quantity": "Số lượng sản phẩm",
+        "paid": "đã thanh toán",
+        "unpaid": "chưa thanh toán",
+        "createdAt": "Ngày mua"
       }
     },
     "header": {

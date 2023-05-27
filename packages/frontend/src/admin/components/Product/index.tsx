@@ -10,14 +10,14 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import FormProduct, { FormData, ImageList } from './FormProduct'
 
-interface DataType {
+export interface DataType {
   _id?: string
   title: string
   describe: string
   price: string
-  imageArray: string[]
+  imageArray: ImageList[]
   detail: string
-  category: string
+  category: string | DataCategory
 }
 
 interface DataEdit {
@@ -102,6 +102,8 @@ const Product = ({ category }: ProductProps) => {
       title: t('price'),
       dataIndex: 'price',
       key: 'price',
+      defaultSortOrder: 'descend',
+      sorter: (a, b) => Number(a.price) - Number(b.price),
     },
     {
       title: t('describe'),
@@ -126,6 +128,13 @@ const Product = ({ category }: ProductProps) => {
       dataIndex: 'category',
       key: 'category',
       render: (x: DataCategory) => x.name,
+      filters: category.data?.data.map((x: DataCategory) => ({
+        text: x.name,
+        value: x._id,
+      })),
+      onFilter: (value: string | number | boolean, record) =>
+        typeof record.category !== 'string' &&
+        record.category?._id.indexOf(value as string) === 0,
     },
     {
       title: ' ',

@@ -96,6 +96,8 @@ const Accessory = () => {
       title: t('price'),
       dataIndex: 'price',
       key: 'price',
+      defaultSortOrder: 'descend',
+      sorter: (a, b) => Number(a.price) - Number(b.price),
     },
     {
       title: t('describe'),

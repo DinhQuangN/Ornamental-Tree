@@ -1,6 +1,6 @@
 import { Input } from 'antd'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export interface HeaderBottomProps {
   onSearch?: (value: string) => void
@@ -8,6 +8,13 @@ export interface HeaderBottomProps {
 
 const HeaderBottom = ({ onSearch }: HeaderBottomProps) => {
   const { t } = useTranslation('common', { keyPrefix: 'common.headerBottom' })
+  const navigate = useNavigate()
+
+  const handleSearch = (value: string) => {
+    navigate(`tim-kiem?search=${value}`)
+    onSearch?.(value)
+  }
+
   return (
     <section id="headers">
       <div className="header container">
@@ -24,7 +31,7 @@ const HeaderBottom = ({ onSearch }: HeaderBottomProps) => {
         </div>
         <div className="right">
           <Input.Search
-            onSearch={onSearch}
+            onSearch={handleSearch}
             allowClear
             size="large"
             placeholder={t('search')}

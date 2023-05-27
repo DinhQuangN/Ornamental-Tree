@@ -8,13 +8,13 @@ import totalRouter from './totalRouter';
 import userRouter from './userRouter';
 
 const routes = [
-	authRouter,
-	accessoryRouter,
-	categoryRouter,
-	productRouter,
-	sliderRouter,
-	totalRouter,
-	orderRouter,
-	userRouter 
+  authRouter,
+  accessoryRouter,
+  categoryRouter,
+  productRouter,
+  sliderRouter,
+  totalRouter,
+  orderRouter,
+  userRouter
 ];
 export default routes;

@@ -1,6 +1,7 @@
 import Admin from '@/admin'
-import Accessory from '@/admin/components/Accessory'
+import AccessoryAdmin from '@/admin/components/Accessory'
 import Category from '@/admin/components/Category'
+import Order from '@/admin/components/Order'
 import Product from '@/admin/components/Product'
 import Header from '@/components/Header/Header'
 import HeaderBottom from '@/components/Header/HeaderBottom'
@@ -9,13 +10,20 @@ import Navbar from '@/components/Navbar'
 import Register from '@/components/Register'
 import { addToken, refreshToken } from '@/features/Auth'
 import { useAppDispatch } from '@/hook/useTypedSelector'
+import Accessory from '@/pages/Accessory'
+import Cart from '@/pages/Cart'
+import Detail from '@/pages/Detail'
 import Home from '@/pages/Home'
+import ProductByCategory from '@/pages/ProductByCategory'
+import Search from '@/pages/Search'
+import Success from '@/pages/Success'
 import { getAPI, postAPI } from '@/utils/axios'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { useLayoutEffect } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 
 const App = () => {
+  const [keyword, setKeyword] = useState<string>('')
   const dispatch = useAppDispatch()
 
   const { mutate } = useMutation({
@@ -34,6 +42,10 @@ const App = () => {
     queryKey: ['fetchCategory'],
     queryFn: async () => await getAPI('get_category'),
   })
+  const product = useQuery({
+    queryKey: ['get_product'],
+    queryFn: async () => await getAPI('get_product'),
+  })
 
   useLayoutEffect(() => {
     dispatch(refreshToken())
@@ -42,23 +54,42 @@ const App = () => {
   return (
     <Router>
       <Header />
-      <HeaderBottom />
+      <HeaderBottom onSearch={setKeyword} />
       <Navbar category={category} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={<Home category={category} product={product} />}
+        />
         <Route
           path="/dang-nhap"
           element={<Login onChange={(value) => handleLogin(value)} />}
         />
         <Route path="/dang-ki" element={<Register />} />
+        <Route path="/san-pham/:id" element={<Detail product={product} />} />
+        <Route path="/gio-hang" element={<Cart />} />
+        <Route path="/success" element={<Success />} />
+        <Route
+          path="/chuyen-muc/:id"
+          element={<ProductByCategory category={category} />}
+        />
+        <Route
+          path="/phu-kien-cay-canh"
+          element={<Accessory category={category} />}
+        />
+        <Route
+          path="/tim-kiem"
+          element={<Search category={category} keyword={keyword} />}
+        />
         <Route path="/admin">
           <Route path="" index element={<Admin />} />
-          <Route path="phu-kien-san-pham" element={<Accessory />} />
+          <Route path="phu-kien-san-pham" element={<AccessoryAdmin />} />
           <Route
             path="loai-san-pham"
             element={<Category category={category} />}
           />
           <Route path="san-pham" element={<Product category={category} />} />
+          <Route path="order" element={<Order />} />
         </Route>
       </Routes>
     </Router>

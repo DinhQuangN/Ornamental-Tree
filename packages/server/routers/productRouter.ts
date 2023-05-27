@@ -1,13 +1,13 @@
 import express from 'express';
 import {
-	createProduct,
-	deleteProduct,
-	getProduct,
-	getProductByCategory,
-	getProductDetail,
-	getProducts,
-	searchProduct,
-	updateProduct
+  createProduct,
+  deleteProduct,
+  getProduct,
+  getProductByCategory,
+  getProductDetail,
+  getProducts,
+  searchProduct,
+  updateProduct
 } from '../controllers/productController';
 import auth from '../middleware/auth';
 

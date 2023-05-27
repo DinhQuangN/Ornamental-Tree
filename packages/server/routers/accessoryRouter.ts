@@ -1,11 +1,11 @@
 import express from 'express';
 import {
-	createAccessory,
-	deleteAccessory,
-	getAccessory,
-	getAccessoryDetail,
-	searchAccessory,
-	updateAccessory
+  createAccessory,
+  deleteAccessory,
+  getAccessory,
+  getAccessoryDetail,
+  searchAccessory,
+  updateAccessory
 } from '../controllers/accessoryController';
 import auth from '../middleware/auth';
 
