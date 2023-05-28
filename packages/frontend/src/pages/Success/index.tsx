@@ -1,7 +1,9 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 const Success: React.FC = () => {
+  const { t } = useTranslation('common', { keyPrefix: 'common.success' })
   return (
     <div
       style={{
@@ -13,7 +15,7 @@ const Success: React.FC = () => {
       }}
     >
       <h2 style={{ fontSize: '32px', lineHeight: '1.5', fontWeight: '500' }}>
-        Thanh toán thành công
+        {t('paymentSuccess')}
       </h2>
       <Link
         to="/"
@@ -29,7 +31,7 @@ const Success: React.FC = () => {
           letterSpacing: '0.3px',
         }}
       >
-        Tiếp tục xem sản phẩm
+        {t('continueProduct')}
       </Link>
     </div>
   )

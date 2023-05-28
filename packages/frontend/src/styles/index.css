@@ -60,3 +60,6 @@ button {
 .block {
   display: block !important;
 }
+.mapboxgl-control-container {
+  display: none;
+}

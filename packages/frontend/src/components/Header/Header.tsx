@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 const Header = () => {
   const { t } = useTranslation('common', { keyPrefix: 'common.header' })
-  const { auth } = useAppSelector((state) => state)
+  const { auth, cart } = useAppSelector((state) => state)
   const [open, setOpen] = useState<boolean>(false)
 
   const { mutate } = useMutation({
@@ -84,7 +84,7 @@ const Header = () => {
         <div className="cart">
           <Link to="/gio-hang">
             <i className="fas fa-shopping-cart"></i>
-            {t('cart')}
+            {t('cart')} {cart.length}
           </Link>
         </div>
       </div>

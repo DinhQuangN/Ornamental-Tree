@@ -1,5 +1,7 @@
-import { FormLogin } from '@/components/Login'
-import { useState } from 'react'
+import { FormData as FormLogin } from '@/components/Login'
+import { postAPI } from '@/utils/axios'
+import { useMutation } from '@tanstack/react-query'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
@@ -21,8 +23,15 @@ const Register = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false)
   const { t: common } = useTranslation('common', { keyPrefix: 'common.common' })
   const { t } = useTranslation('common', { keyPrefix: 'common.register' })
-  const handleSubmit = () => {
-    console.log('a')
+
+  const { mutate } = useMutation({
+    mutationKey: ['register'],
+    mutationFn: async (data: FormRegister) => await postAPI('register', data),
+  })
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    mutate(data)
   }
   return (
     <div className="limiter">

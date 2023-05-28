@@ -1,4 +1,7 @@
 import { useAppSelector } from '@/hook/useTypedSelector'
+import { postAPI } from '@/utils/axios'
+import { useGoogleLogin } from '@react-oauth/google'
+import axios from 'axios'
 import React, { useLayoutEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
@@ -30,7 +33,26 @@ const Login = ({ onChange }: LoginProps) => {
     }
     return
   }, [auth.data?.access_token])
-
+  const handleLoginGoogle = useGoogleLogin({
+    onSuccess: async (response) => {
+      try {
+        const data = await axios.get(
+          'https://www.googleapis.com/oauth2/v3/userinfo',
+          {
+            headers: {
+              Authorization: `Bearer ${response.access_token}`,
+            },
+            withCredentials: false,
+          }
+        )
+        const res = await postAPI('loginGoogle', data.data)
+        if (res.data.message === 'Login success')
+          return (window.location.href = '/')
+      } catch (error) {
+        console.log(error)
+      }
+    },
+  })
   return (
     <div className="limiter">
       <title>{t('login')}</title>
@@ -91,22 +113,12 @@ const Login = ({ onChange }: LoginProps) => {
             </div>
 
             <div className="flex-c-m">
-              {/* <div
+              <div
                 className="login-social-item bg3"
                 onClick={() => handleLoginGoogle()}
               >
                 <i className="fab fa-google"></i>
-              </div> */}
-              {/* <div style={{ opacity: '0' }} id="google">
-								<GoogleLogin
-									onSuccess={credentialResponse => {
-										console.log(credentialResponse.credential);
-									}}
-									onError={() => {
-										console.log('error fail');
-									}}
-								/>
-							</div> */}
+              </div>
             </div>
 
             <div className="flex-col-c">

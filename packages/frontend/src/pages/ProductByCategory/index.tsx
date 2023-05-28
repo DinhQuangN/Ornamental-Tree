@@ -31,8 +31,6 @@ const ProductByCategory = ({ category }: ProductByCategoryProps) => {
     enabled: category.data?.status === 200,
   })
 
-  console.log('da', data?.data.products)
-
   return (
     <div>
       <Product category={category}>

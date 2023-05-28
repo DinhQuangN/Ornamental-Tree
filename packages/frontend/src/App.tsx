@@ -1,11 +1,13 @@
-import Admin from '@/admin'
 import AccessoryAdmin from '@/admin/components/Accessory'
 import Category from '@/admin/components/Category'
 import Order from '@/admin/components/Order'
 import Product from '@/admin/components/Product'
+import Statistical from '@/admin/components/Statistical'
+import Footer from '@/components/Footer'
 import Header from '@/components/Header/Header'
 import HeaderBottom from '@/components/Header/HeaderBottom'
 import Login, { FormData as FormDataLogin } from '@/components/Login'
+import MapBox from '@/components/MapBox'
 import Navbar from '@/components/Navbar'
 import Register from '@/components/Register'
 import { addToken, refreshToken } from '@/features/Auth'
@@ -50,7 +52,6 @@ const App = () => {
   useLayoutEffect(() => {
     dispatch(refreshToken())
   }, [dispatch])
-
   return (
     <Router>
       <Header />
@@ -81,8 +82,9 @@ const App = () => {
           path="/tim-kiem"
           element={<Search category={category} keyword={keyword} />}
         />
+        {/* <Route path="/map" element={<MapBox />} /> */}
         <Route path="/admin">
-          <Route path="" index element={<Admin />} />
+          <Route path="" index element={<Statistical />} />
           <Route path="phu-kien-san-pham" element={<AccessoryAdmin />} />
           <Route
             path="loai-san-pham"
@@ -92,6 +94,7 @@ const App = () => {
           <Route path="order" element={<Order />} />
         </Route>
       </Routes>
+      <Footer />
     </Router>
   )
 }

@@ -1,4 +1,5 @@
 import store from '@/features'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import 'antd/dist/reset.css'
 import React from 'react'
@@ -14,11 +15,13 @@ const queryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <I18nextProvider i18n={i18n}>
-          <App />
-        </I18nextProvider>
-      </QueryClientProvider>
+      <GoogleOAuthProvider clientId={import.meta.env.VITE_CLIENT_ID}>
+        <QueryClientProvider client={queryClient}>
+          <I18nextProvider i18n={i18n}>
+            <App />
+          </I18nextProvider>
+        </QueryClientProvider>
+      </GoogleOAuthProvider>
     </Provider>
   </React.StrictMode>
 )
