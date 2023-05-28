@@ -5,13 +5,14 @@ import getStripe from '@/utils/getStripe'
 import { vnd } from '@/utils/utils'
 import { Elements } from '@stripe/react-stripe-js'
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 const Cart: React.FC = () => {
+  const { t } = useTranslation('common', { keyPrefix: 'common.cart' })
   const [open, setOpen] = useState<boolean>(false)
   const { cart, auth } = useAppSelector((state) => state)
   const dispatch = useAppDispatch()
-  const history = useNavigate()
   let total: number = 0
   const showTotal = (cart: ICartType[]) => {
     cart.forEach((e) => {
@@ -32,18 +33,18 @@ const Cart: React.FC = () => {
     <div className="productCarts">
       <title>Giỏ hàng</title>
       <div className="productCart">
-        <h3>Giỏ hàng </h3>
+        <h3>{t('cart')} </h3>
         {cart.length > 0 ? (
           <>
             <table>
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Hình ảnh</th>
-                  <th>Tên sản phẩm</th>
-                  <th>Giá sản phẩm</th>
-                  <th>Số lượng</th>
-                  <th>Thành tiền</th>
+                  <th>{t('image')}</th>
+                  <th>{t('productName')}</th>
+                  <th>{t('productPrice')}</th>
+                  <th>{t('quantity')}</th>
+                  <th>{t('intoMoney')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -104,7 +105,7 @@ const Cart: React.FC = () => {
                   lineHeight: '1.2',
                 }}
               >
-                Tổng: {vnd(showTotal(cart))} đ
+                {t('total')}: {vnd(showTotal(cart))} đ
               </p>
             </div>
             <div
@@ -137,7 +138,7 @@ const Cart: React.FC = () => {
                   }}
                   onClick={() => setOpen(!open)}
                 >
-                  Thanh toán
+                  {t('pay')}
                 </button>
               ) : (
                 <Link
@@ -157,7 +158,7 @@ const Cart: React.FC = () => {
                     marginRight: '30px',
                   }}
                 >
-                  Đăng nhập
+                  {t('login')}
                 </Link>
               )}
               <Link
@@ -177,7 +178,7 @@ const Cart: React.FC = () => {
                   marginRight: '30px',
                 }}
               >
-                Chọn thêm sản phẩm
+                {t('chooseMoreProduct')}
               </Link>
             </div>
           </>
@@ -191,7 +192,7 @@ const Cart: React.FC = () => {
                 marginTop: '15px',
               }}
             >
-              Hiện không có sản phẩm nào trong giỏ hàng của bạn.
+              {t('noProductInCart')}
             </p>
             <p
               style={{
@@ -200,9 +201,9 @@ const Cart: React.FC = () => {
                 letterSpacing: '0.8px',
               }}
             >
-              Bạn vui lòng
+              {t('please')}
               <Link to="/" style={{ fontWeight: 700 }}>
-                chọn sản phẩm
+                {t('chooseProduct')}
               </Link>
             </p>
           </div>

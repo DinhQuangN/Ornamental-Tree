@@ -88,6 +88,9 @@
         "paid": "đã thanh toán",
         "unpaid": "chưa thanh toán",
         "createdAt": "Ngày mua"
+      },
+      "statisticalForm": {
+        "quantitySold": "Số lượng hàng đã bán (sản phẩm)"
       }
     },
     "header": {
@@ -140,6 +143,54 @@
       "trees": "cây cảnh",
       "ornamentalPlantPot": "chậu cảnh",
       "bonsaiAccessories": "phụ kiện cây cảnh"
+    },
+    "checkout": {
+      "pay": "Thanh toán",
+      "fullName": "Họ và tên",
+      "phone": "Số điện thoại",
+      "address": "Địa chỉ",
+      "describe": "Mô tả",
+      "chooseAddress": "Chọn địa chỉ"
+    },
+    "footer": {
+      "fastAccess": "Truy cập nhanh",
+      "introduce": "Giới thiệu",
+      "service": "Dịch vụ",
+      "blog_new": "Blog-Tin tức",
+      "support": "hỗ trợ",
+      "exchangePolicy": "chính sách đổi hàng",
+      "contact": "liên hệ",
+      "content": "Vườn Cây Việt chuyên bán các loại cây cảnh để bàn, cây cảnh phong thuỷ, cho thuê cây cảnh,cây cảnh bonsai, tiểu cảnh terrarium và cung cấp các dịch vụ liên quan đến cây cảnh. Hotline: 0985507150. \n Email: lienhe@vuoncayviet.com"
+    },
+    "detail": {
+      "price": "Giá bán",
+      "buyNow": "Mua ngay",
+      "addCart": "Thêm giỏ hàng",
+      "content1": "Cung cấp các loại cây cảnh đa dạng với giá hợp lý Miễn phí giao hàng cho đơn hàng trên 500.000đ (áp dụng tại các quận nội thành TP.HCM)",
+      "content2": "Tư vấn và hướng dẫn chăm sóc cây tận tình",
+      "content3": "Tư vấn kỹ lưỡng các vấn đề phong thuỷ, hợp mệnh - hợp tuổi Cho thuê cây cảnh văn phòng",
+      "content4": "Hỗ trợ đổi trả sản phẩm trong vòng 3 ngày sau khi mua",
+      "detail": "CHI TIẾT SẢN PHẨM",
+      "showMore": "Xem thêm"
+    },
+    "cart": {
+      "cart": "Giỏ hàng",
+      "image": "Hình ảnh",
+      "productName": "Tên sản phẩm",
+      "productPrice": "Giá sản phẩm",
+      "quantity": "Số lượng",
+      "intoMoney": "Thành tiền",
+      "total": "Tổng",
+      "pay": "Thanh toán",
+      "login": "Đăng nhập",
+      "chooseMoreProduct": "Chọn thêm sản phẩm",
+      "noProductInCart": "Hiện không có sản phẩm nào trong giỏ hàng của bạn.",
+      "please": "Bạn vui lòng",
+      "chooseProduct": "chọn sản phẩm"
+    },
+    "success": {
+      "paymentSuccess": "Thanh toán thành công",
+      "continueProduct": "Tiếp tục xem sản phẩm"
     }
   }
 }

@@ -2,8 +2,10 @@ import { useAppSelector } from '@/hook/useTypedSelector'
 import { postAPI } from '@/utils/axios'
 import { vnd } from '@/utils/utils'
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
-import { notification } from 'antd'
-import React, { useEffect } from 'react'
+import { Button, Input, notification } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import MapBox from '../MapBox'
 
 const CARD_OPTIONS = {
   style: {
@@ -36,6 +38,8 @@ interface IProps {
   totalMoney: number
 }
 const CheckOut: React.FC<IProps> = ({ setOpen, totalMoney }) => {
+  const { t } = useTranslation('common', { keyPrefix: 'common.checkout' })
+  const [openMap, setOpenMap] = useState<boolean>(false)
   const initialState = {
     describe: '',
     name: '',
@@ -114,38 +118,62 @@ const CheckOut: React.FC<IProps> = ({ setOpen, totalMoney }) => {
     <form className="check_out-form" onSubmit={handleSubmit}>
       <fieldset className="check_out-form-group">
         <div className="check_out-form-row">
-          <label htmlFor="check_out-form-label">Thanh toán</label>
+          <label htmlFor="check_out-form-label">{t('pay')}</label>
           <i className="fas fa-times" onClick={() => setOpen(false)}></i>
         </div>
         <CardElement options={CARD_OPTIONS} />
         <div className="check_out-form-column">
-          <input
+          <Input
             type="text"
-            placeholder="Họ và tên"
+            placeholder={t('fullName')}
             name="name"
             value={name}
             onChange={handleOnChange}
+            style={{ marginBottom: '10px' }}
           />
-          <input
+          <Input
             type="text"
-            placeholder="Số điện thoại"
+            placeholder={t('phone')}
             name="email"
             value={email}
             onChange={handleOnChange}
+            style={{ marginBottom: '10px' }}
           />
-          <input
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginBottom: '10px',
+              gap: '10px',
+            }}
+          >
+            <Input
+              type="text"
+              placeholder={t('address')}
+              name="address"
+              value={address}
+              onChange={handleOnChange}
+            />
+            <Button style={{ width: '30%' }} onClick={() => setOpenMap(true)}>
+              {t('chooseAddress')}
+            </Button>
+          </div>
+          {openMap && (
+            <div style={{ marginBottom: '10px' }}>
+              <MapBox
+                height="20vh"
+                sizeInput="middle"
+                onSearch={(value) => setData({ ...data, address: value })}
+              />
+            </div>
+          )}
+          <Input
             type="text"
-            placeholder="Địa chỉ"
-            name="address"
-            value={address}
-            onChange={handleOnChange}
-          />
-          <input
-            type="text"
-            placeholder="Mô tả"
+            placeholder={t('describe')}
             name="describe"
             value={describe}
             onChange={handleOnChange}
+            style={{ marginBottom: '10px' }}
           />
         </div>
       </fieldset>

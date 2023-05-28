@@ -4,12 +4,14 @@ import { useAppDispatch } from '@/hook/useTypedSelector'
 import { vnd } from '@/utils/utils'
 import { Image } from 'antd'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Navigation, Thumbs } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { ProductProps } from './Right'
 
 const DisplayProduct = ({ product }: ProductProps) => {
+  const { t } = useTranslation('common', { keyPrefix: 'common.detail' })
   const [quantity, setQuantity] = useState<number>(1)
   const dispatch = useAppDispatch()
   const handleQuantity = (type: any) => {
@@ -72,7 +74,7 @@ const DisplayProduct = ({ product }: ProductProps) => {
               dangerouslySetInnerHTML={{ __html: product.describe }}
             />
             <p>
-              Giá bán: <span>{vnd(product?.price)} đ</span>
+              {t('price')}: <span>{vnd(product?.price)} đ</span>
             </p>
             <div className="product-cart">
               <div className="quantity">
@@ -81,35 +83,28 @@ const DisplayProduct = ({ product }: ProductProps) => {
                 <button onClick={() => handleQuantity('inc')}>+</button>
               </div>
               <Link to="/gio-hang" onClick={handleClick}>
-                Mua ngay
+                {t('buyNow')}
               </Link>
 
               <Link to="/gio-hang" onClick={handleClick}>
-                Thêm giỏ hàng
+                {t('addCart')}
               </Link>
             </div>
           </div>
           <div className="product-commit">
             <div className="commit">
               <h3>VƯỜN CÂY VIỆT CAM KẾT:</h3>
-              <p>
-                Cung cấp các loại cây cảnh đa dạng với giá hợp lý Miễn phí giao
-                hàng cho đơn hàng trên 500.000đ (áp dụng tại các quận nội thành
-                TP.HCM)
-              </p>
-              <p>Tư vấn và hướng dẫn chăm sóc cây tận tình</p>
-              <p>
-                Tư vấn kỹ lưỡng các vấn đề phong thuỷ, hợp mệnh - hợp tuổi Cho
-                thuê cây cảnh văn phòng
-              </p>
-              <p>Hỗ trợ đổi trả sản phẩm trong vòng 3 ngày sau khi mua</p>
+              <p>{t('content1')}</p>
+              <p>{t('content2')}</p>
+              <p>{t('content3')}</p>
+              <p>{t('content4')}</p>
             </div>
           </div>
         </div>
       </section>
       <section id="content-page">
         <div className="content-page">
-          <h3>CHI TIẾT SẢN PHẨM</h3>
+          <h3>{t('detail')}</h3>
 
           <div
             style={{
@@ -129,7 +124,7 @@ const DisplayProduct = ({ product }: ProductProps) => {
 					<button>Chia sẻ</button> */}
           <button>
             <Link to="/" style={{ color: '#fff' }}>
-              Xem thêm
+              {t('showMore')}
             </Link>
           </button>
         </div>
