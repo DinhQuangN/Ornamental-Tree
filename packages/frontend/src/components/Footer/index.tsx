@@ -1,8 +1,12 @@
-import React from 'react'
+import { Select } from 'antd'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  onChange: (value: string) => void
+}
+
+const Footer = ({ onChange }: FooterProps) => {
   const { t } = useTranslation('common', { keyPrefix: 'common.footer' })
   return (
     <section id="footer">
@@ -31,6 +35,22 @@ const Footer: React.FC = () => {
           <div className="right">
             <h3>{t('contact')}</h3>
             <p>{t('content')}</p>
+            <div
+              style={{
+                fontSize: '20px',
+              }}
+            >
+              {t('chooseLanguage')}
+              <Select
+                defaultValue="VietNamese"
+                style={{ width: 120 }}
+                onChange={onChange}
+                options={[
+                  { value: 'vi', label: 'VietNamese' },
+                  { value: 'en', label: 'English' },
+                ]}
+              />
+            </div>
           </div>
         </div>
       </div>

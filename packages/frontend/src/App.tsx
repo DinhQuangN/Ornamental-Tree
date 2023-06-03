@@ -3,11 +3,11 @@ import Category from '@/admin/components/Category'
 import Order from '@/admin/components/Order'
 import Product from '@/admin/components/Product'
 import Statistical from '@/admin/components/Statistical'
+import User from '@/admin/components/User'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header/Header'
 import HeaderBottom from '@/components/Header/HeaderBottom'
 import Login, { FormData as FormDataLogin } from '@/components/Login'
-import MapBox from '@/components/MapBox'
 import Navbar from '@/components/Navbar'
 import Register from '@/components/Register'
 import { addToken, refreshToken } from '@/features/Auth'
@@ -21,6 +21,7 @@ import Search from '@/pages/Search'
 import Success from '@/pages/Success'
 import { getAPI, postAPI } from '@/utils/axios'
 import { useMutation, useQuery } from '@tanstack/react-query'
+import i18next from 'i18next'
 import { useLayoutEffect, useState } from 'react'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 
@@ -48,6 +49,9 @@ const App = () => {
     queryKey: ['get_product'],
     queryFn: async () => await getAPI('get_product'),
   })
+  const handleLanguage = (value: string) => {
+    i18next.changeLanguage(value)
+  }
 
   useLayoutEffect(() => {
     dispatch(refreshToken())
@@ -92,9 +96,10 @@ const App = () => {
           />
           <Route path="san-pham" element={<Product category={category} />} />
           <Route path="order" element={<Order />} />
+          <Route path="tai-khoan" element={<User />} />
         </Route>
       </Routes>
-      <Footer />
+      <Footer onChange={(value) => handleLanguage(value)} />
     </Router>
   )
 }
