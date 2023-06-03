@@ -3,6 +3,7 @@ import { useAppSelector } from '@/hook/useTypedSelector'
 import { getAPI, postAPI } from '@/utils/axios'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { useLayoutEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface IUser {
   _id: string
@@ -21,6 +22,9 @@ interface UpdateRole {
 }
 
 const User = () => {
+  const { t } = useTranslation('common', {
+    keyPrefix: 'common.admin.userForm',
+  })
   const { auth } = useAppSelector((state) => state)
   const { data, refetch } = useQuery({
     queryKey: ['getUser'],
@@ -57,11 +61,11 @@ const User = () => {
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Tên tài khoản</th>
-                  <th>Tài khoản</th>
-                  <th>Ảnh đại diện</th>
-                  <th>Loại tài khoản</th>
-                  <th>Ngày tạo tài khoản</th>
+                  <th>{t('accountName')}</th>
+                  <th>{t('account')}</th>
+                  <th>{t('avatar')}</th>
+                  <th>{t('accountType')}</th>
+                  <th>{t('createAt')}</th>
                 </tr>
               </thead>
               <tbody>

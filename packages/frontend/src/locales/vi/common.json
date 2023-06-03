@@ -87,10 +87,29 @@
         "quantity": "Số lượng sản phẩm",
         "paid": "đã thanh toán",
         "unpaid": "chưa thanh toán",
-        "createdAt": "Ngày mua"
+        "createdAt": "Ngày mua",
+        "purchaseHistory":"Lịch sử mua hàng"
       },
       "statisticalForm": {
         "quantitySold": "Số lượng hàng đã bán (sản phẩm)"
+      },
+      "sliderForm": {
+        "createSlider": "Thêm slider",
+        "image": "Hình ảnh",
+        "slider": "Slider",
+        "chooseImage": "Chọn ảnh",
+        "pleaseChooseImage": "Vui lòng chọn ảnh",
+        "notification": "Thông báo",
+        "fileUploadSuccess": "file được tải thành công.",
+        "fileUploadFaile": "tải file thất bại.",
+        "areYouSureYouWantToDeleteThisProduct": "Bạn có chắc chắn muốn xóa slider này không?"
+      },
+      "userForm": {
+        "accountName": "Tên tài khoản",
+        "account": "Tài khoản",
+        "avatar": "Ảnh đại diện",
+        "accountType": "Loại tài khoản",
+        "createAt": "Ngày tạo tài khoản"
       }
     },
     "header": {

@@ -1,7 +1,18 @@
+import { UseQueryResult } from '@tanstack/react-query'
+import { AxiosResponse } from 'axios'
 import { Autoplay, Navigation, Pagination } from 'swiper'
-import { Swiper } from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
-const Slider = () => {
+interface SliderProps {
+  slider: UseQueryResult<AxiosResponse<any, any>, unknown>
+}
+
+interface SliderData {
+  _id: string
+  image: string
+}
+
+const Slider = ({ slider }: SliderProps) => {
   return (
     <section id="slides">
       <Swiper
@@ -15,11 +26,11 @@ const Slider = () => {
         modules={[Pagination, Navigation, Autoplay]}
         className="slide container"
       >
-        {/* {slide.data?.map((item: ISlide, index: number) => (
+        {slider.data?.data.map((item: SliderData, index: number) => (
           <SwiperSlide key={index}>
             <img src={item.image} alt={item.image} />
           </SwiperSlide>
-        ))} */}
+        ))}
       </Swiper>
     </section>
   )

@@ -87,10 +87,29 @@
         "quantity": "Product quantity",
         "paid": "Paid",
         "unpaid": "UnPaid",
-        "createdAt": "Create at"
+        "createdAt": "Create at",
+        "purchaseHistory": "Purchase history"
       },
       "statisticalForm": {
         "quantitySold": "Quantity sold (products)"
+      },
+      "sliderForm": {
+        "createSlider": "Create slider",
+        "image": "Image",
+        "slider": "Slider",
+        "chooseImage": "Choose image",
+        "pleaseChooseImage": "Please choose image",
+        "notification": "Notification",
+        "fileUploadSuccess": "fFile upload success",
+        "fileUploadFaile": "File upload faile",
+        "areYouSureYouWantToDeleteThisProduct": "Are you sure you want to delete this slider?"
+      },
+      "userForm": {
+        "accountName": "Account name",
+        "account": "Account",
+        "avatar": "Avatar",
+        "accountType": "Account Type",
+        "createAt": "Create at"
       }
     },
     "header": {

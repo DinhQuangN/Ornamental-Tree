@@ -12,7 +12,7 @@ interface ICart extends DataProduct {
   quantity: number
 }
 
-interface DataType {
+export interface DataType {
   _id: string
   name: string
   total: number

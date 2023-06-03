@@ -2,19 +2,23 @@ import AccessoryAdmin from '@/admin/components/Accessory'
 import Category from '@/admin/components/Category'
 import Order from '@/admin/components/Order'
 import Product from '@/admin/components/Product'
+import SliderAdmin from '@/admin/components/Slider'
 import Statistical from '@/admin/components/Statistical'
 import User from '@/admin/components/User'
 import Footer from '@/components/Footer'
+import ForgotPassword from '@/components/ForgotPassword'
 import Header from '@/components/Header/Header'
 import HeaderBottom from '@/components/Header/HeaderBottom'
 import Login, { FormData as FormDataLogin } from '@/components/Login'
 import Navbar from '@/components/Navbar'
 import Register from '@/components/Register'
+import ResetPassword from '@/components/ResetPassword'
 import { addToken, refreshToken } from '@/features/Auth'
 import { useAppDispatch } from '@/hook/useTypedSelector'
 import Accessory from '@/pages/Accessory'
 import Cart from '@/pages/Cart'
 import Detail from '@/pages/Detail'
+import History from '@/pages/History'
 import Home from '@/pages/Home'
 import ProductByCategory from '@/pages/ProductByCategory'
 import Search from '@/pages/Search'
@@ -36,6 +40,11 @@ const App = () => {
     onSuccess({ data }) {
       dispatch(addToken(data))
     },
+  })
+
+  const slider = useQuery({
+    queryKey: ['getSlider'],
+    queryFn: () => getAPI('get_slider'),
   })
 
   const handleLogin = (value: FormDataLogin) => {
@@ -64,7 +73,9 @@ const App = () => {
       <Routes>
         <Route
           path="/"
-          element={<Home category={category} product={product} />}
+          element={
+            <Home category={category} product={product} slider={slider} />
+          }
         />
         <Route
           path="/dang-nhap"
@@ -86,6 +97,9 @@ const App = () => {
           path="/tim-kiem"
           element={<Search category={category} keyword={keyword} />}
         />
+        <Route path="/history" element={<History />} />
+        <Route path="/quen-mat-khau" element={<ForgotPassword />} />
+        <Route path="/dat-lai-mat-khau/:token_id" element={<ResetPassword />} />
         {/* <Route path="/map" element={<MapBox />} /> */}
         <Route path="/admin">
           <Route path="" index element={<Statistical />} />
@@ -94,6 +108,7 @@ const App = () => {
             path="loai-san-pham"
             element={<Category category={category} />}
           />
+          <Route path="slider" element={<SliderAdmin slider={slider} />} />
           <Route path="san-pham" element={<Product category={category} />} />
           <Route path="order" element={<Order />} />
           <Route path="tai-khoan" element={<User />} />

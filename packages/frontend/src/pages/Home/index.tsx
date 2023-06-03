@@ -8,15 +8,16 @@ import { useTranslation } from 'react-i18next'
 interface HomeProps {
   category: UseQueryResult<AxiosResponse<any, any>, unknown>
   product: UseQueryResult<AxiosResponse<any, any>, unknown>
+  slider: UseQueryResult<AxiosResponse<any, any>, unknown>
 }
 
-const Home = ({ category, product }: HomeProps) => {
+const Home = ({ category, product,slider }: HomeProps) => {
   const { t } = useTranslation('common', { keyPrefix: 'common.home' })
 
   return (
     <>
       <title>{t('bonsaiGarden')}</title>
-      <Slider />
+      <Slider slider={slider} />
       <Product category={category}>
         <div className="shop-product">
           {product.data?.data.map((item: ProductItemProps, index: number) => (
