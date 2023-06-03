@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"scripts": {
 		"dev": "pnpm run -r dev",
+		"build": "pnpm --filter ornamental-tree-fe build",
 		"format": "pnpm run -r --no-bail format",
 		"lint": "pnpm run -r --no-bail lint",
 		"tsc": "pnpm run -r tsc"
