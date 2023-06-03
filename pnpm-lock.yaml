@@ -34,6 +34,12 @@ importers:
       '@types/react-dom':
         specifier: ^18.0.11
         version: 18.0.11
+      '@types/react-redux':
+        specifier: ^7.1.25
+        version: 7.1.25
+      '@types/redux-thunk':
+        specifier: ^2.1.0
+        version: 2.1.0(redux@4.2.1)
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.57.1
         version: 5.57.1(@typescript-eslint/parser@5.57.1)(eslint@8.38.0)(typescript@5.0.2)
@@ -1191,12 +1197,30 @@ packages:
       '@types/react': 18.0.28
     dev: true
 
+  /@types/react-redux@7.1.25:
+    resolution: {integrity: sha512-bAGh4e+w5D8dajd6InASVIyCo4pZLJ66oLb80F9OBLO1gKESbZcRCJpTT6uLXX+HAB57zw1WTdwJdAsewuTweg==}
+    dependencies:
+      '@types/hoist-non-react-statics': 3.3.1
+      '@types/react': 18.0.28
+      hoist-non-react-statics: 3.3.2
+      redux: 4.2.1
+    dev: true
+
   /@types/react@18.0.28:
     resolution: {integrity: sha512-RD0ivG1kEztNBdoAK7lekI9M+azSnitIn85h4iOiaLjaTrMjzslhaqCGaI4IyCJ1RljWiLCEu4jyrLLgqxBTew==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.3
       csstype: 3.1.2
+    dev: true
+
+  /@types/redux-thunk@2.1.0(redux@4.2.1):
+    resolution: {integrity: sha512-8M+kcrnZQYO3A40d8a1lieBFur/ab8EXHqa2dGMQqsmBaVCbNp3gd8ed/HuSjLoLA63ov/trXaXWlkiKVF4VUw==}
+    deprecated: This is a stub types definition for Redux Thunk (https://github.com/gaearon/redux-thunk). Redux Thunk provides its own type definitions, so you don't need @types/redux-thunk installed!
+    dependencies:
+      redux-thunk: 2.4.2(redux@4.2.1)
+    transitivePeerDependencies:
+      - redux
     dev: true
 
   /@types/scheduler@0.16.3:
