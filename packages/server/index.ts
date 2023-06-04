@@ -10,8 +10,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({
-  origin: 'https://main--marvelous-chimera-f63f81.netlify.app',
-  credentials: true
+	origin: 'https://marvelous-chimera-f63f81.netlify.app/' || 'http://localhost:5173',
+	credentials: true
 }));
 app.use(morgan('dev'));
 app.use(cookieParser());
@@ -22,5 +22,5 @@ import './config/database';
 
 const PORT = Number(process.env.PORT) || 8080;
 app.listen(PORT, () => {
-  console.log(`Server is running ${PORT}`);
+	console.log(`Server is running ${PORT}`);
 });
