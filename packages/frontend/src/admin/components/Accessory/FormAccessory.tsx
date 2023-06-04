@@ -4,7 +4,6 @@ import {
   Form,
   FormInstance,
   Input,
-  InputNumber,
   Modal,
   Upload,
   notification,
@@ -151,14 +150,10 @@ const FormAccessory = ({
             },
             { whitespace: true },
             { min: 3 },
-            {
-              type: 'number',
-              min: 0,
-            },
           ]}
           hasFeedback
         >
-          <InputNumber placeholder={t('enterPrice')} size="large" />
+          <Input placeholder={t('enterPrice')} size="large" />
         </Form.Item>
         <Form.Item
           name="describe"
