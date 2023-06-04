@@ -1,6 +1,7 @@
 import { FormData as FormLogin } from '@/components/Login'
 import { postAPI } from '@/utils/axios'
 import { useMutation } from '@tanstack/react-query'
+import { notification } from 'antd'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -27,6 +28,9 @@ const Register = () => {
   const { mutate } = useMutation({
     mutationKey: ['register'],
     mutationFn: async (data: FormRegister) => await postAPI('register', data),
+    onSuccess(data) {
+      notification.success({ message: data.data.message })
+    },
   })
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

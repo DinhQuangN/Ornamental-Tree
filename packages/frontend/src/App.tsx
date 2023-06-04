@@ -5,6 +5,7 @@ import Product from '@/admin/components/Product'
 import SliderAdmin from '@/admin/components/Slider'
 import Statistical from '@/admin/components/Statistical'
 import User from '@/admin/components/User'
+import ActivatedEmail from '@/components/ActiveAccount'
 import Footer from '@/components/Footer'
 import ForgotPassword from '@/components/ForgotPassword'
 import Header from '@/components/Header/Header'
@@ -20,6 +21,7 @@ import Cart from '@/pages/Cart'
 import Detail from '@/pages/Detail'
 import History from '@/pages/History'
 import Home from '@/pages/Home'
+import Introduce from '@/pages/Introduce'
 import ProductByCategory from '@/pages/ProductByCategory'
 import Search from '@/pages/Search'
 import Success from '@/pages/Success'
@@ -73,6 +75,7 @@ const App = () => {
       <Routes>
         <Route
           path="/"
+          index
           element={
             <Home category={category} product={product} slider={slider} />
           }
@@ -82,6 +85,8 @@ const App = () => {
           element={<Login onChange={(value) => handleLogin(value)} />}
         />
         <Route path="/dang-ki" element={<Register />} />
+        <Route path="/active/:active_token" element={<ActivatedEmail />} />
+        <Route path="/gioi-thieu" element={<Introduce category={category} />} />
         <Route path="/san-pham/:id" element={<Detail product={product} />} />
         <Route path="/gio-hang" element={<Cart />} />
         <Route path="/success" element={<Success />} />
